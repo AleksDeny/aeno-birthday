@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AENO — Happy Birthday</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#0a0a0a;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Inter',sans-serif;
+  overflow:hidden;
+  cursor:default;
+}
+.orb {
+  position:fixed;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 4s ease;
+}
+.orb1 { width:600px;height:600px;background:radial-gradient(circle,rgba(123,63,110,0.6) 0%,transparent 70%);top:-150px;left:-150px;animation:f1 22s ease-in-out infinite; }
+.orb2 { width:500px;height:500px;background:radial-gradient(circle,rgba(196,137,58,0.5) 0%,transparent 70%);bottom:-100px;right:-100px;animation:f2 28s ease-in-out infinite; }
+.orb3 { width:400px;height:400px;background:radial-gradient(circle,rgba(74,127,165,0.4) 0%,transparent 70%);top:40%;left:40%;transform:translate(-50%,-50%);animation:f3 20s ease-in-out infinite; }
+.orb4 { width:300px;height:300px;background:radial-gradient(circle,rgba(90,122,90,0.4) 0%,transparent 70%);bottom:25%;left:5%;animation:f4 25s ease-in-out infinite; }
+.show .orb { opacity:1; }
+@keyframes f1{0%,100%{transform:translate(0,0)}33%{transform:translate(70px,50px)}66%{transform:translate(-40px,80px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}33%{transform:translate(-60px,-40px)}66%{transform:translate(50px,-70px)}}
+@keyframes f3{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-44%,-56%)}}
+@keyframes f4{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-50px)}}
+
+.screen {
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 1.4s ease;
+  z-index:10;
+}
+.screen.on { opacity:1;pointer-events:all; }
+
+.hint {
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+  animation:pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.65}}
+
+.card {
+  max-width:580px;padding:0 48px;
+}
+.dear {
+  font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+  margin-bottom:36px;
+  opacity:0;transform:translateY(20px);
+  transition:opacity 1s ease 0.3s,transform 1s ease 0.3s;
+}
+.body {
+  font-size:16px;font-weight:300;line-height:1.9;
+  color:rgba(255,255,255,0.78);
+  opacity:0;transform:translateY(20px);
+  transition:opacity 1s ease 0.8s,transform 1s ease 0.8s;
+}
+.body p+p { margin-top:22px; }
+.sig {
+  margin-top:48px;
+  opacity:0;transform:translateY(14px);
+  transition:opacity 1s ease 1.4s,transform 1s ease 1.4s;
+}
+.hb {
+  font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+  margin-bottom:24px;
+  line-height:1.8;
+}
+.logo {
+  opacity:0;transform:translateY(10px);
+  transition:opacity 1.2s ease 2.2s,transform 1.2s ease 2.2s;
+}
+.logo svg { width:88px;height:auto; }
+.screen2.on .dear,
+.screen2.on .body,
+.screen2.on .sig { opacity:1;transform:translateY(0); }
+.screen2.on .logo { opacity:1;transform:translateY(0); }
+.line {
+  width:28px;height:1px;
+  background:rgba(255,255,255,0.12);
+  margin-bottom:22px;
+}
+</style>
+</head>
+<body id="b">
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div class="orb orb4"></div>
+
+<div class="screen screen1 on" id="s1">
+  <div class="hint">A small note from AENO</div>
+</div>
+
+<div class="screen screen2" id="s2">
+  <div class="card">
+    <div class="dear">Dear Serhei,</div>
+    <div class="body">
+      <p>At AENO we work with very everyday things &ndash; how people feel about themselves and in their own homes.</p>
+      <p>Today we just want to say thank you for supporting what we do and for trusting ideas like ours. And we would like to wish you the same balance we try to bring into people&rsquo;s lives: real comfort, strong health and the quiet pleasure of liking both yourself and the place you come back to.</p>
+    </div>
+    <div class="sig">
+      <div class="line"></div>
+      <div class="hb">Happy Birthday &ndash;<br>with warm wishes,</div>
+      <div class="logo">
+        <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="26" font-family="Inter,sans-serif" font-size="28" font-weight="500" letter-spacing="8" fill="white">AENO</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var b=document.getElementById('b');
+var s1=document.getElementById('s1');
+var s2=document.getElementById('s2');
+setTimeout(function(){b.classList.add('show');},400);
+s1.addEventListener('click',function(){
+  s1.style.opacity='0';
+  s1.style.pointerEvents='none';
+  setTimeout(function(){
+    s1.classList.remove('on');
+    s2.classList.add('on');
+  },700);
+});
+</script>
+</body>
+</html>
